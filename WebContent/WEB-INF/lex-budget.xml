@@ -27,6 +27,12 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+	<!--  Define Tiles Resolver -->
+	<!-- <bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />	
+	</bean> -->
+	
 	<!-- Step 1: Define Database DataSource / connection pool -->
 	<bean id="lexDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
