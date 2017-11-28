@@ -6,6 +6,7 @@ package org.lexusmanson.lexbudget.controller;
 import java.util.List;
 // 03000593156
 
+
 import org.lexusmanson.lexbudget.entity.Accounts;
 import org.lexusmanson.lexbudget.entity.Transactions;
 import org.lexusmanson.lexbudget.service.AccountsService;
@@ -13,11 +14,18 @@ import org.lexusmanson.lexbudget.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.validation.BindingResult;
 
 /**
  * 
@@ -38,6 +46,17 @@ public class TransactionsController {
 	 */
 	@Autowired
 	private TransactionService transactionService;
+	
+	
+	@Autowired
+	@Qualifier("transactionValidator")
+	private Validator validator;
+	
+	@InitBinder
+	private void initBinder(WebDataBinder binder) {
+		binder.setValidator(validator);
+	}
+	
 	
 	/**
 	 * Displays a list of transactions associated with a particular account.
@@ -79,9 +98,12 @@ public class TransactionsController {
 	 * @param transaction - the transaction to be saved.
 	 * @return - a HTTP redirect request that returns the user to the page displayig all the transactions.
 	 */
-	@PostMapping("/saveTransaction")
-	public String saveTransaction(@ModelAttribute("transaction") Transactions transaction) {
-		
+	@RequestMapping(value = "/saveTransaction", method = RequestMethod.POST)
+	public String saveTransaction(@ModelAttribute("transaction") Transactions transaction, BindingResult bindingResult) {
+		validator.validate(transaction, bindingResult);
+		if(bindingResult.hasErrors()) {
+			return "transactions/transactionsForm";
+		}
 		transactionService.saveTransaction(transaction);
 		int account = transaction.getAccountsId().getId();
 		return "redirect:/transactions/showFormForAdd?accountId=" + account;

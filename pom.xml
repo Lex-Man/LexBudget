@@ -31,7 +31,7 @@
   		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   		<java.version>1.9</java.version>
   		<failOnMissingWebXml>false</failOnMissingWebXml>
-        <spring.version>5.0.0.RELEASE</spring.version>
+        <spring.version>5.0.1.RELEASE</spring.version>
         <hibernate.version>5.2.11.Final</hibernate.version>
         <hibernate.validator>5.4.1.Final</hibernate.validator>
         <c3p0.version>0.9.5.2</c3p0.version>
@@ -40,6 +40,7 @@
         <servlets.version>3.1.0</servlets.version>
         <jsp.version>2.3.1</jsp.version>
         <hsqldb.version>1.8.0.10</hsqldb.version>
+        <aspectj.version>1.8.13</aspectj.version>
   </properties>
   
   <dependencies>
@@ -129,6 +130,51 @@
         	<groupId>org.apache.tiles</groupId>
         	<artifactId>tiles-extras</artifactId>
         	<version>3.0.8</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-aop</artifactId>
+        	<version>${spring.version}</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-core</artifactId>
+        	<version>${spring.version}</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-context</artifactId>
+        	<version>${spring.version}</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.aspectj</groupId>
+        	<artifactId>aspectjrt</artifactId>
+        	<version>${aspectj.version}</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.aspectj</groupId>
+        	<artifactId>aspectjweaver</artifactId>
+        	<version>${aspectj.version}</version>
+        </dependency>
+        <dependency>
+        	<groupId>javax.validation</groupId>
+        	<artifactId>validation-api</artifactId>
+        	<version>2.0.0.Final</version>
+        </dependency>
+        <dependency>
+        	<groupId>javax.inject</groupId>
+        	<artifactId>javax.inject</artifactId>
+        	<version>1</version>
+        </dependency>
+        <dependency>
+        	<groupId>javax.servlet</groupId>
+        	<artifactId>jstl</artifactId>
+        	<version>1.2</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-jdbc</artifactId>
+        	<version>${spring.version}</version>
         </dependency>
   </dependencies>
   

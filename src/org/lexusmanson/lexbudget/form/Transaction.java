@@ -15,11 +15,10 @@
  *
  */
 
-package org.lexusmanson.lexbudget.entity;
+package org.lexusmanson.lexbudget.form;
 
 import java.time.LocalDate;	
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,77 +31,51 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-import javax.validation.Valid;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import org.lexusmanson.lexbudget.entity.Accounts;
 
-@Entity
-@Table(name="transactions")
-public class Transactions {
+public class Transaction {
 
 	/**
 	 * Represents the transactions id.
 	 */
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
 	public int id;
+	
 	
 	/**
 	 * represents the names of the payee the transaction is related to.
 	 */
-	@Column(name="payee")
 	public String payee;
 	
 	
 	/**
 	 * stores a description of the transactions purpose.
 	 */
-	@Column(name="description")
 	public String description;
 	
 	/**
 	 * stores the reference information for the transaction.
 	 */
-	@Column(name="reference")
 	public String reference;
 	
 	/**
 	 * stores the category of the transactions.
 	 */
-	@Column(name="category")
 	public String category;
 	
 	/**
 	 * stores the date that the transaction was made.
 	 */
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@Column(name="date")
-	@Valid
-	public LocalDate date;
+	public String date;
 	
-	@Transient
-	public String dateAsString;
-	
-	public String getDateAsString() {
-		return dateAsString;
-	}
-
-	public void setDateAsString(String dateAsString) {
-		this.dateAsString = dateAsString;
-	}
-
 	/**
 	 * Stores the amount that the transaction is for.
 	 */
-	@Column(name="amount")
 	public double amount;
 	
 	/**
 	 * The current balance of the associated account after the transaction has been applyied.
 	 */
-	@Column(name="balance")
 	public double balance;
 	
 	
@@ -125,15 +98,13 @@ public class Transactions {
 	/**
 	 * Stores the related account object as defined by the account_id coloumn in the transaction table.
 	 */
-	@ManyToOne(cascade= {CascadeType.ALL})
-	@JoinColumn(name="accounts_id")
 	public Accounts accountsId;
 	
 	
 	/**
 	 * Creates an instance of the transaction class without setting any of the variables.
 	 */
-	public Transactions() {
+	public Transaction() {
 		//date = LocalDate.parse("dd/MM/YYYY");
 	}
 	
@@ -149,8 +120,8 @@ public class Transactions {
 	 * @param accounts_id
 	 * @param balance
 	 */
-	public Transactions(int id, String payee, String description, String reference,
-						String category, LocalDate date, double amount, Accounts accounts_id
+	public Transaction(int id, String payee, String description, String reference,
+						String category, String date, double amount, Accounts accounts_id
 						, double balance) {
 		
 		this.id = id;
@@ -284,7 +255,7 @@ public class Transactions {
 	 * 
 	 * @return - the date of the transaction.
 	 */
-	public LocalDate getDate() {
+	public String getDate() {
 		return date;
 	}
 
@@ -293,10 +264,9 @@ public class Transactions {
 	 * 
 	 * @param date - the date of the transaction.
 	 */
-	public void setDate(LocalDate date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-
 	
 	/**
 	 * The amount the transaction is for.

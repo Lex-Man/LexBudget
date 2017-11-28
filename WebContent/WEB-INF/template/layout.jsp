@@ -6,14 +6,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="<c:url value="/resources/CSS/styles.css" />" rel="stylesheet" />
-<title><tiles:insertAttribute name="title"/></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="<c:url value="/resources/CSS/styles.css" />" rel="stylesheet" />
+	<title><tiles:insertAttribute name="title"/></title>
 </head>
 <body>
-	<tiles:insertAttribute name="header" />
-	<tiles:insertAttribute name="menu" />
-	<tiles:insertAttribute name="body"/>
-	<tiles:insertAttribute name="footer" />
+	<nav>
+		<tiles:insertAttribute name="menu" />
+	</nav>
+	<main class="main">
+		<tiles:insertAttribute name="header" />
+		<article>
+			<tiles:insertAttribute name="body"/>
+		</article>
+		<tiles:insertAttribute name="footer" />	
+	</main>
 </body>
 </html>

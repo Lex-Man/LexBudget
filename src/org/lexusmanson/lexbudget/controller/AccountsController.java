@@ -5,8 +5,6 @@ package org.lexusmanson.lexbudget.controller;
  * 
  */
 
-
-
 import java.util.List;
 
 import org.lexusmanson.lexbudget.entity.Accounts;
@@ -14,11 +12,18 @@ import org.lexusmanson.lexbudget.service.AccountsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.validation.BindingResult;
+
 
 @Controller
 @RequestMapping("/accounts")
@@ -29,6 +34,15 @@ public class AccountsController {
 	 */
 	@Autowired
 	private AccountsService accountsService;
+	
+	@Autowired
+	@Qualifier("accountsValidator")
+	private Validator validator;
+	
+	@InitBinder
+	private void initBinder(WebDataBinder binder) {
+		binder.setValidator(validator);
+	}
 	
 	/**
 	 * Returns a web page displaying the accounts currently stored in the database.
@@ -64,9 +78,11 @@ public class AccountsController {
 	 * @param theAccount - the new account to be added to the database
 	 * @return a HTTP redirect request that sends the user back to the main accounts page. 
 	 */
-	@PostMapping("/saveAccount")
-	public String saveAccount(@ModelAttribute("account") Accounts theAccount) {
-		
+	@RequestMapping(value = "/saveAccount", method = RequestMethod.POST)
+	public String saveAccount(@ModelAttribute("account") @Validated Accounts theAccount, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			return "accounts/accountForm";
+		}
 		accountsService.saveAccount(theAccount);
 		return "redirect:/accounts/main";
 	}

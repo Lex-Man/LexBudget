@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>${account.organisation} - ${account.function} Account</title>
-</head>
-<body>
 <c:url var="transactionLink" value="showFormForAdd">
 	<c:param name="accountId" value="${account.id}" />
 </c:url>
@@ -15,8 +8,6 @@
 <input type="button" value="Add Transaction"
 	onclick="window.location.href='${transactionLink}'; return false;"
 	class="add-button" />
-		
-
 <table>
 	<tr>
 		<th>date</th>
@@ -56,5 +47,3 @@
 	</c:forEach>
 </table>
 <a href="${pageContext.request.contextPath}/accounts/main">return</a>
-</body>
-</html>
