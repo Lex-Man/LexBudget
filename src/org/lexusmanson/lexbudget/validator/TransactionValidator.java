@@ -1,7 +1,6 @@
 package org.lexusmanson.lexbudget.validator;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import org.lexusmanson.lexbudget.entity.Transactions;
@@ -30,8 +29,7 @@ public class TransactionValidator implements Validator {
 		String dateString = temp.getDateAsString();
 		if(dateString.matches("^\\d{1,2}/\\d{1,2}/\\d{1,4}$")) {
 			formatter = DateTimeFormatter.ofPattern("d/M/y");
-			System.out.println("here");
-		}else {
+		}else if(dateString.matches("^\\d{3,4}/\\d{1,2}/\\d{1,2}$")){
 			formatter = DateTimeFormatter.ofPattern("y/M/d");
 		}
 		

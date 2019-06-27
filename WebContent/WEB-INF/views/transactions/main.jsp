@@ -10,13 +10,13 @@
 	class="add-button" />
 <table>
 	<tr>
-		<th>date</th>
-		<th>payee</th>
-		<th>description</th>
-		<th>reference</th>
-		<th>category</th>
-		<th>amount</th>
-		<th>balance</th>
+		<th>Date</th>
+		<th>Payee</th>
+		<th>Description</th>
+		<th>Reference</th>
+		<th>Category</th>
+		<th>Amount</th>
+		<th>Balance</th>
 	</tr>
 	<c:forEach var="tempTransaction" items="${transaction}">
 	
@@ -30,7 +30,7 @@
 		<c:param name="accountId" value="${account.id}"/>
 	</c:url>
 	
-	<tr>
+	<tr class="tRow">
 		<td>${tempTransaction.date}</td>
 		<td>${tempTransaction.payee}</td>
 		<td>${tempTransaction.description}</td>
@@ -46,4 +46,4 @@
 	</tr>	
 	</c:forEach>
 </table>
-<a href="${pageContext.request.contextPath}/accounts/main">return</a>
+<div class="return"><a href="${pageContext.request.contextPath}/accounts/main">return</a></div>

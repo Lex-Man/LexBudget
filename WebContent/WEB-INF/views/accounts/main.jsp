@@ -3,7 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 	<h1>Accounts</h1>
-	<br/>
 	<input type="button" value="Add Account"
 		onclick="window.location.href='showFormForAdd'; return false;"
 		class="add-button"
@@ -35,7 +34,7 @@
 					<a href="${transactionLink}">${tempAccount.organisation}</a>
 				</td>
 				<td>${tempAccount.function}</td>
-				<td>${tempAccount.currentBalance}</td>
+				<td class="balance">${tempAccount.currentBalance}</td>
 				<td>
 					<a href="${updateLink}">Update</a>
 					|
