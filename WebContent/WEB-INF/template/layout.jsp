@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="<c:url value="/resources/CSS/styles.css" />" rel="stylesheet" />
+	<link href="<c:url value="/resources/CSS/LexBudget.css" />" rel="stylesheet" />
 	<title><tiles:insertAttribute name="title"/></title>
 </head>
 <body>
