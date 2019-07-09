@@ -17,9 +17,7 @@
 
 package org.lexusmanson.lexbudget.entity;
 
-import java.time.LocalDate;	
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,12 +28,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 @Entity
 @Table(name="transactions")
@@ -80,6 +84,9 @@ public class Transactions {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name="date")
 	@Valid
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern ="dd/MM/yyyy")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	public LocalDate date;
 	
 	@Transient
@@ -127,6 +134,7 @@ public class Transactions {
 	 */
 	@ManyToOne(cascade= {CascadeType.ALL})
 	@JoinColumn(name="accounts_id")
+	@JsonBackReference
 	public Accounts accountsId;
 	
 	

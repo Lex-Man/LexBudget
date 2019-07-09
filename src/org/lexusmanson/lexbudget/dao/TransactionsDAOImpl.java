@@ -2,12 +2,9 @@ package org.lexusmanson.lexbudget.dao;
 
 import java.util.List;
 
-import javax.transaction.Transaction;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import org.lexusmanson.lexbudget.entity.Accounts;
 import org.lexusmanson.lexbudget.entity.Transactions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

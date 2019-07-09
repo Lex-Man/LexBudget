@@ -1,0 +1,7 @@
+<!-- user maanger can access only manager section -->
+<role rolename="manager-gui" />
+<user username="manager" password="Hammer88" roles="manager-gui" />
+
+<!-- user admin can access manager and admin section both -->
+<role rolename="admin-gui" />
+<user username="admin" password="Hammer88" roles="manager-gui,admin-gui" />

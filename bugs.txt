@@ -1,0 +1,2 @@
+1. Updating transactions breaks the total
+2. Can access transactions from the wrong account in restful service. 
