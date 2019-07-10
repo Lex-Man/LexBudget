@@ -32,6 +32,7 @@
   		<java.version>1.8</java.version>
   		<failOnMissingWebXml>false</failOnMissingWebXml>
         <spring.version>5.1.8.RELEASE</spring.version>
+        <springsecurity.version>5.1.5.RELEASE</springsecurity.version>
         <hibernate.version>5.4.3.Final</hibernate.version>
         <hibernate.validator>6.0.16.Final</hibernate.validator>
         <c3p0.version>0.9.5.4</c3p0.version>
@@ -59,6 +60,20 @@
             <version>${spring.version}</version>
         </dependency>
  
+ 		<!--  Spring Security -->
+		<dependency>
+  			<groupId>org.springframework.security</groupId>
+  			<artifactId>spring-security-config</artifactId>
+  			<version>${springsecurity.version}</version>
+		</dependency>
+ 
+		<!--  spring-security-web -->
+		<dependency>
+  			<groupId>org.springframework.security</groupId>
+  			<artifactId>spring-security-web</artifactId>
+  			<version>${springsecurity.version}</version>
+		</dependency>
+ 
         <!-- Hibernate Core -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -66,13 +81,14 @@
             <version>${hibernate.version}</version>
         </dependency>
  
- 		<!-- Actuator -->
+ 		<!-- Actuator 
 		<dependency>
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-actuator</artifactId>
     		<version>2.1.6.RELEASE</version>
 		</dependency>
- 
+ 		-->
+ 		
  		<!-- Add Jackson for JSON converters -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
