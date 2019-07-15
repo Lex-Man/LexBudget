@@ -9,6 +9,7 @@
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/error/TransactionRestExceptionHandler.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/dao/AccountsDAO.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/error/TransactionNotFoundException.java
+/home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/controller/LoginController.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/test/stringReplacementTest.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/config/LexBudgetConfig.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/validator/TransactionValidator.java

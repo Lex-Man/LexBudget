@@ -14,6 +14,7 @@ org/lexusmanson/lexbudget/rest/AccountRestController.class
 org/lexusmanson/lexbudget/rest/error/AccountNotFoundException.class
 org/lexusmanson/lexbudget/entity/Transactions.class
 org/lexusmanson/lexbudget/dao/TransactionsDAOImpl.class
+org/lexusmanson/lexbudget/controller/LoginController.class
 org/lexusmanson/lexbudget/util/TransactionCollector.class
 org/lexusmanson/lexbudget/service/TransactionService.class
 org/lexusmanson/lexbudget/service/AccountsService.class
