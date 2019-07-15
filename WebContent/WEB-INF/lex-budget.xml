@@ -88,24 +88,29 @@
 		<b:property name="basename" value="classpath:message" />
 		<b:property name="defaultEncoding" value="UTF-8" />
 	</b:bean>
+  
     
-    <!--  <http />  -->
-    
-    
-   	<http use-expressions="true">
+   	<http use-expressions="true" auto-config="true">
    		<intercept-url pattern="/login/**" access="isAnonymous()" />
    		<intercept-url pattern="/**" access="isAuthenticated()" />
-   		
+   		<intercept-url pattern="/api/**" access="isAuthenticated()"/>
    		<form-login login-page='/login/login'
    			login-processing-url='/login/authenticate'
    			default-target-url="/"
    			authentication-failure-url="/login/login?error=true" />
-   			<logout logout-success-url="/login/login" />
-   	</http>
+   		<logout logout-success-url="/login/login" />
+   		<!--  <csrf request-matcher-ref="csrfSecurityRequestMatcher"/>	-->
+   		<!-- <csrf disabled="true" />  --> 
+   		
+   	</http> 
 	 
+	<!-- <http auto-config="true" use-expressions="true">
+		 <intercept-url pattern="/api/**" access="isAuthenticated()"/>
+		 <csrf disabled="true"/>
+	</http>  -->
 	 
 	<user-service>
-		<user name="Lex" password="{noop}Test" authorities="tester" />
+		<user name="Lex" password="{noop}Test" authorities="TESTER" />
 	</user-service>		
    
    <!--  For Spring actuator -->

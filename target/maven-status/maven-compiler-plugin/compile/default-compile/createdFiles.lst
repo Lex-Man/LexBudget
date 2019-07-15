@@ -1,3 +1,4 @@
+org/lexusmanson/lexbudget/config/CsrfSecurityRequestMatcher.class
 org/lexusmanson/lexbudget/config/LexBudgetConfig.class
 org/lexusmanson/lexbudget/service/AccountsServiceImpl.class
 org/lexusmanson/lexbudget/validator/AccountsValidator.class

@@ -18,6 +18,7 @@
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/service/TransactionService.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/AccountRestController.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/aspect/TransactionValidationAspect.java
+/home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/config/CsrfSecurityRequestMatcher.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/error/GenericRestExceptionHandler.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/util/TransactionCollector.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/controller/AccountsController.java
