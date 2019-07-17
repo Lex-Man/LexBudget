@@ -191,3 +191,19 @@ article h1{
 	display:inline-block;
 	
 }
+
+.colour7 input {
+	background:none;	
+	color:black;
+	border:none;
+	padding:0!important;
+	font: inherit;
+	cursor: pointer;
+}
+
+.login {
+	background-color:unset;
+	border:none;
+}
+
+}

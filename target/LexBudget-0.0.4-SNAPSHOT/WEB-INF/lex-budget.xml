@@ -92,8 +92,11 @@
     
    	<http use-expressions="true" auto-config="true">
    		<intercept-url pattern="/login/**" access="isAnonymous()" />
+   		<intercept-url pattern="/resources/CSS/LexBudget.css" access="permitAll()"/>
    		<intercept-url pattern="/**" access="isAuthenticated()" />
    		<intercept-url pattern="/api/**" access="isAuthenticated()"/>
+   		<logout logout-success-url="/login/login?logout"
+   				logout-url="/login/logout"/>
    		<form-login login-page='/login/login'
    			login-processing-url='/login/authenticate'
    			default-target-url="/"

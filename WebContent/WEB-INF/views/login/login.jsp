@@ -9,13 +9,31 @@
 		<!--  Check for login error -->
 		<c:if test="${param.error != null}">
 		
-			<i class="failed"> Sorry! You entered a invalid username/password.</i>
+			<i class="error"> Sorry! You entered a invalid username/password.</i>
 		</c:if>
-		<p>
-			User name: <input type="text" name="username" />
-		</p>
-		<p>
-			Password: <input type="password" name="password" />
-		</p>
-		<input type="submit" value="Login" />
+		<table>
+		<tbody>
+			<tr>
+				<th class="login">
+					User name: 
+				</th>
+				<th class="login">
+					<input type="text" name="username" />
+				</th>
+			</tr>
+			<tr>
+				<th class="login">
+					Password: 
+				</th>
+				<th class="login">
+					<input type="password" name="password" />
+				</th>
+			</tr>
+			<tr>
+				<th class="login">
+					<input type="submit" value="Login" />
+				</th>
+			</tr>
+		</tbody>
+		</table>
 	</form:form>
