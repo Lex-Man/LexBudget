@@ -1,8 +1,11 @@
+/home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/service/LoginServiceImpl.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/entity/Transactions.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/dao/TransactionsDAO.java
+/home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/dao/LoginDAOImpl.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/error/AccountRestExceptionHandler.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/error/LexBudgetErrorResponse.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/controller/TestController.java
+/home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/dao/LoginDAO.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/TransactionRestController.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/dao/TransactionsDAOImpl.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/validator/AccountsValidator.java
@@ -10,8 +13,11 @@
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/dao/AccountsDAO.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/error/TransactionNotFoundException.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/controller/LoginController.java
+/home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/DTO/UserDTO.java
+/home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/service/LoginService.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/test/stringReplacementTest.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/config/LexBudgetConfig.java
+/home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/entity/User.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/validator/TransactionValidator.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/service/AccountsService.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/error/AccountNotFoundException.java
@@ -22,6 +28,7 @@
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/error/GenericRestExceptionHandler.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/util/TransactionCollector.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/controller/AccountsController.java
+/home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/entity/Authorities.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/controller/TransactionsController.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/service/AccountsServiceImpl.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/dao/AccountsDAOImpl.java

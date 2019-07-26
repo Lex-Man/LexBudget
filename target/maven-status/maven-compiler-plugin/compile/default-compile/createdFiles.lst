@@ -1,5 +1,8 @@
 org/lexusmanson/lexbudget/config/CsrfSecurityRequestMatcher.class
 org/lexusmanson/lexbudget/config/LexBudgetConfig.class
+org/lexusmanson/lexbudget/dao/LoginDAO.class
+org/lexusmanson/lexbudget/entity/User.class
+org/lexusmanson/lexbudget/dao/LoginDAOImpl.class
 org/lexusmanson/lexbudget/service/AccountsServiceImpl.class
 org/lexusmanson/lexbudget/validator/AccountsValidator.class
 org/lexusmanson/lexbudget/aspect/TransactionValidationAspect.class
@@ -17,8 +20,12 @@ org/lexusmanson/lexbudget/entity/Transactions.class
 org/lexusmanson/lexbudget/dao/TransactionsDAOImpl.class
 org/lexusmanson/lexbudget/controller/LoginController.class
 org/lexusmanson/lexbudget/util/TransactionCollector.class
+org/lexusmanson/lexbudget/service/LoginServiceImpl.class
+org/lexusmanson/lexbudget/service/LoginService.class
+org/lexusmanson/lexbudget/DTO/UserDTO.class
 org/lexusmanson/lexbudget/service/TransactionService.class
 org/lexusmanson/lexbudget/service/AccountsService.class
+org/lexusmanson/lexbudget/entity/Authorities.class
 org/lexusmanson/lexbudget/entity/Accounts.class
 org/lexusmanson/lexbudget/rest/error/TransactionRestExceptionHandler.class
 org/lexusmanson/lexbudget/dao/AccountsDAOImpl.class

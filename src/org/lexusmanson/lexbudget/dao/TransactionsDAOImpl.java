@@ -47,7 +47,7 @@ public class TransactionsDAOImpl implements TransactionsDAO{
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query theQuery =  currentSession.createQuery("from Transactions where accountsId.id=:var order by date", Transactions.class);
+		Query<Transactions> theQuery =  currentSession.createQuery("from Transactions where accountsId.id=:var order by date", Transactions.class);
 
 		theQuery.setParameter("var", account);
 		List<Transactions> trans = theQuery.getResultList();
