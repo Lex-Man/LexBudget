@@ -115,8 +115,11 @@
 			/> -->
 			<jdbc-user-service data-source-ref="lexDataSource" />
 		</authentication-provider>
-	</authentication-manager>
-	 
+	</authentication-manager>	 
+	
+	<b:bean id="bCrypt" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<b:constructor-arg value="10" />
+	</b:bean>
 	<!-- <user-service>
 		<user name="Lex" password="{noop}Test" authorities="TESTER" />
 	</user-service>  -->		
@@ -133,4 +136,5 @@
         <bean name="endpointAutoConfiguration" class="org.springframework.boot.actuate.autoconfigure.EndpointAutoConfiguration"/>
     </beans>
      -->
+     
 </b:beans>
