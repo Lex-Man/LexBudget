@@ -46,9 +46,9 @@ public class AccountsServiceImpl implements AccountsService, TransactionService{
 	 */
 	@Override
 	@Transactional
-	public void saveAccount(Accounts account) {
+	public void saveAccount(Accounts account, String name) {
 
-		accountDAO.saveAccount(account);
+		accountDAO.saveAccount(account, name);
 		
 	}
 
@@ -58,9 +58,9 @@ public class AccountsServiceImpl implements AccountsService, TransactionService{
 	 */
 	@Override
 	@Transactional
-	public List<Accounts> getAccounts() {
+	public List<Accounts> getAccounts(String user) {
 		
-		return accountDAO.getAccounts();
+		return accountDAO.getAccounts(user);
 	}
 
 	/**
@@ -68,8 +68,8 @@ public class AccountsServiceImpl implements AccountsService, TransactionService{
 	 */
 	@Override
 	@Transactional
-	public void DeleteAccount(int theId) {
-		accountDAO.deleteAccount(theId);
+	public void DeleteAccount(int theId, String name) {
+		accountDAO.deleteAccount(theId, name);
 	}
 
 	/**
@@ -78,9 +78,9 @@ public class AccountsServiceImpl implements AccountsService, TransactionService{
 	 */
 	@Override
 	@Transactional
-	public Accounts getAccount(int id) {
+	public Accounts getAccount(int id, String name) {
 		
-		return accountDAO.getAccount(id);
+		return accountDAO.getAccount(id, name);
 	}
 
 	/**
@@ -88,14 +88,14 @@ public class AccountsServiceImpl implements AccountsService, TransactionService{
 	 */
 	@Override
 	@Transactional
-	public void saveTransaction(Transactions transaction) {
+	public void saveTransaction(Transactions transaction, String name) {
 //		double tempBalance = transaction.accountsId.getCurrentBalance() + transaction.getAmount();
 //		transaction.accountsId.setCurrentBalance(tempBalance);
 //		transaction.setBalance(tempBalance);
-		transactionDAO.saveTransaction(transaction);
+		transactionDAO.saveTransaction(transaction, name);
 	
 		
-		this.updateTransactions(transaction.getAccountsId().getId());
+		this.updateTransactions(transaction.getAccountsId().getId(), name);
 	}
 
 	/**
@@ -103,9 +103,9 @@ public class AccountsServiceImpl implements AccountsService, TransactionService{
 	 */
 	@Override
 	@Transactional
-	public List<Transactions> getTransactions(int accountId) {
+	public List<Transactions> getTransactions(int accountId, String user) {
 		
-		return transactionDAO.getTransactions(accountId);
+		return transactionDAO.getTransactions(accountId, user);
 	}
 
 	/**
@@ -113,10 +113,10 @@ public class AccountsServiceImpl implements AccountsService, TransactionService{
 	 */
 	@Override
 	@Transactional
-	public void deleteTransaction(int transactionId, int accountId) {
+	public void deleteTransaction(int transactionId, int accountId, String name) {
 		
-		transactionDAO.deleteTransaction(transactionId);
-		this.updateTransactions(accountId);
+		transactionDAO.deleteTransaction(transactionId, name);
+		this.updateTransactions(accountId, name);
 	}
 
 	/**
@@ -125,18 +125,18 @@ public class AccountsServiceImpl implements AccountsService, TransactionService{
 	 */
 	@Override
 	@Transactional
-	public Transactions getTransaction(int transId) {
+	public Transactions getTransaction(int transId, String user) {
 		
-		return transactionDAO.getTransaction(transId);
+		return transactionDAO.getTransaction(transId, user);
 	}
 	
 	/**
 	 * Helper method used to keep transactions consistent.
 	 * @param accountId
 	 */
-	private void updateTransactions(int accountId) {
-		Accounts theAccount = accountDAO.getAccount(accountId);
-		List<Transactions> accTransaction = this.getTransactions(accountId);
+	private void updateTransactions(int accountId, String name) {
+		Accounts theAccount = accountDAO.getAccount(accountId, name);
+		List<Transactions> accTransaction = this.getTransactions(accountId, name);
 		Stream<Transactions> transStream = accTransaction.stream();
 		
 		DoubleAdder da = new DoubleAdder();
@@ -148,7 +148,7 @@ public class AccountsServiceImpl implements AccountsService, TransactionService{
 		
 		theAccount.setTransactions(accTransaction);
 		theAccount.setCurrentBalance(da.sum());
-		this.saveAccount(theAccount);
+		this.saveAccount(theAccount, null);
 	}
 
 }

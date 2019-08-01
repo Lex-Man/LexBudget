@@ -32,6 +32,8 @@ public class User {
 	@OneToMany(mappedBy="username", cascade= {CascadeType.ALL}, fetch=FetchType.LAZY)
 	private List<Authorities> authorities;
 	
+	//@OneToMany(mappedBy="username", cascade= {CascadeType.ALL}, fetch=FetchType.LAZY)
+	
 	public String getUsername() {
 		
 		return username;

@@ -1,236 +1,257 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>LexBudget</groupId>
-  <artifactId>LexBudget</artifactId>
-  <version>0.0.4-SNAPSHOT</version>
-  <packaging>war</packaging>
-  <build>
-    <sourceDirectory>src</sourceDirectory>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.7.0</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.0.0</version>
-        <configuration>
-          <warSourceDirectory>WebContent</warSourceDirectory>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-  <name>LexBudget</name>
-  <description>Simple Budgting web application</description>
-  
-    <properties>
-  		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  		<java.version>1.8</java.version>
-  		<failOnMissingWebXml>false</failOnMissingWebXml>
-        <spring.version>5.1.8.RELEASE</spring.version>
-        <springsecurity.version>5.1.5.RELEASE</springsecurity.version>
-        <hibernate.version>5.4.3.Final</hibernate.version>
-        <hibernate.validator>6.0.16.Final</hibernate.validator>
-        <c3p0.version>0.9.5.4</c3p0.version>
-        <jstl.version>1.2.2</jstl.version>
-        <tld.version>1.1.2</tld.version>
-        <servlets.version>4.0.1</servlets.version>
-        <jsp.version>2.3.3</jsp.version>
-        <hsqldb.version>1.8.0.10</hsqldb.version>
-        <aspectj.version>1.9.4</aspectj.version>
-        <jackson.version>2.9.9</jackson.version>
-  </properties>
-  
-  <dependencies>
-        <!-- Spring MVC Dependency -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
- 
-        <!-- Spring ORM -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
- 
- 		<!--  Spring Security -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>LexBudget</groupId>
+	<artifactId>LexBudget</artifactId>
+	<version>0.0.4-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<testSourceDirectory>test</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<warSourceDirectory>WebContent</warSourceDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-surefire-plugin</artifactId>
+            	<version>3.0.0-M3</version>
+			</plugin>
+		</plugins>
+	</build>
+	<name>LexBudget</name>
+	<description>Simple Budgting web application</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<spring.version>5.1.8.RELEASE</spring.version>
+		<springsecurity.version>5.1.5.RELEASE</springsecurity.version>
+		<hibernate.version>5.4.3.Final</hibernate.version>
+		<hibernate.validator>6.0.16.Final</hibernate.validator>
+		<c3p0.version>0.9.5.4</c3p0.version>
+		<jstl.version>1.2.2</jstl.version>
+		<tld.version>1.1.2</tld.version>
+		<servlets.version>4.0.1</servlets.version>
+		<jsp.version>2.3.3</jsp.version>
+		<hsqldb.version>1.8.0.10</hsqldb.version>
+		<aspectj.version>1.9.4</aspectj.version>
+		<jackson.version>2.9.9</jackson.version>
+	</properties>
+
+	<dependencies>
+		<!-- Spring MVC Dependency -->
 		<dependency>
-  			<groupId>org.springframework.security</groupId>
-  			<artifactId>spring-security-config</artifactId>
-  			<version>${springsecurity.version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
-		
-		<!--  Add Spring Security Taglibs support -->
+
+		<!-- Spring ORM -->
 		<dependency>
-  			<groupId>org.springframework.security</groupId>
-  			<artifactId>spring-security-taglibs</artifactId>
-  			<version>${springsecurity.version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
- 
-		<!--  spring-security-web -->
+
+		<!-- Spring Security -->
 		<dependency>
-  			<groupId>org.springframework.security</groupId>
-  			<artifactId>spring-security-web</artifactId>
-  			<version>${springsecurity.version}</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${springsecurity.version}</version>
 		</dependency>
- 
-        <!-- Hibernate Core -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
- 
- 		<!-- Actuator 
+
+		<!-- Add Spring Security Taglibs support -->
 		<dependency>
-    		<groupId>org.springframework.boot</groupId>
-    		<artifactId>spring-boot-actuator</artifactId>
-    		<version>2.1.6.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${springsecurity.version}</version>
 		</dependency>
- 		-->
- 		
- 		<!-- Add Jackson for JSON converters -->
+
+		<!-- spring-security-web -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
+
+		<!-- Hibernate Core -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<!-- Actuator <dependency> <groupId>org.springframework.boot</groupId> 
+			<artifactId>spring-boot-actuator</artifactId> <version>2.1.6.RELEASE</version> 
+			</dependency> -->
+
+		<!-- Add Jackson for JSON converters -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-		
+
 		<dependency>
-   			<groupId>com.fasterxml.jackson.datatype</groupId>
-   			<artifactId>jackson-datatype-jsr310</artifactId>
-   			<version>${jackson.version}</version>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
- 
-        <!-- Hibernate-C3P0 Integration -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-c3p0</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
- 
-        <!-- c3p0 -->
-        <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>${c3p0.version}</version>
-        </dependency>
- 
-        <!-- Hibernate Validator -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${hibernate.validator}</version>
-        </dependency>
- 
-        <!-- JSTL Dependency -->
-        <dependency>
-            <groupId>javax.servlet.jsp.jstl</groupId>
-            <artifactId>javax.servlet.jsp.jstl-api</artifactId>
-            <version>${jstl.version}</version>
-        </dependency>
-         
-        <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <version>${tld.version}</version>
-        </dependency>
- 
-        <!-- Servlet Dependency -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${servlets.version}</version>
-            <scope>provided</scope>
-        </dependency>
- 
-        <!-- JSP Dependency -->
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>javax.servlet.jsp-api</artifactId>
-            <version>${jsp.version}</version>
-            <scope>provided</scope>
-        </dependency>
- 
-        <!-- HSQL Dependency -->
-        <dependency>
-            <groupId>hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>${hsqldb.version}</version>
-        </dependency>
-        <dependency>
-        	<groupId>org.mariadb.jdbc</groupId>
-        	<artifactId>mariadb-java-client</artifactId>
-        	<version>2.4.2</version>
-        </dependency>
-        <dependency>
-        	<groupId>org.apache.tiles</groupId>
-        	<artifactId>tiles-extras</artifactId>
-        	<version>3.0.8</version>
-        </dependency>
-        <dependency>
-        	<groupId>org.springframework</groupId>
-        	<artifactId>spring-aop</artifactId>
-        	<version>${spring.version}</version>
-        </dependency>
-        <dependency>
-        	<groupId>org.springframework</groupId>
-        	<artifactId>spring-core</artifactId>
-        	<version>${spring.version}</version>
-        </dependency>
-        <dependency>
-        	<groupId>org.springframework</groupId>
-        	<artifactId>spring-context</artifactId>
-        	<version>${spring.version}</version>
-        </dependency>
-        <dependency>
-        	<groupId>org.aspectj</groupId>
-        	<artifactId>aspectjrt</artifactId>
-        	<version>${aspectj.version}</version>
-        </dependency>
-        <dependency>
-        	<groupId>org.aspectj</groupId>
-        	<artifactId>aspectjweaver</artifactId>
-        	<version>${aspectj.version}</version>
-        </dependency>
-        <dependency>
-        	<groupId>javax.validation</groupId>
-        	<artifactId>validation-api</artifactId>
-        	<version>2.0.1.Final</version>
-        </dependency>
-        <dependency>
-        	<groupId>javax.inject</groupId>
-        	<artifactId>javax.inject</artifactId>
-        	<version>1</version>
-        </dependency>
-        <dependency>
-        	<groupId>javax.servlet</groupId>
-        	<artifactId>jstl</artifactId>
-        	<version>1.2</version>
-        </dependency>
-        <dependency>
-        	<groupId>org.springframework</groupId>
-        	<artifactId>spring-jdbc</artifactId>
-        	<version>${spring.version}</version>
-        </dependency>
-        <dependency>
-        	<groupId>org.slf4j</groupId>
-        	<artifactId>slf4j-api</artifactId>
-        	<version>1.7.26</version>
-        </dependency>
-        <dependency>
-  			<groupId>org.modelmapper</groupId>
-  			<artifactId>modelmapper</artifactId>
-  			<version>2.3.5</version>
+
+		<!-- Hibernate-C3P0 Integration -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>${hibernate.version}</version>
 		</dependency>
-  </dependencies>
-  
+
+		<!-- c3p0 -->
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>${c3p0.version}</version>
+		</dependency>
+
+		<!-- Hibernate Validator -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate.validator}</version>
+		</dependency>
+
+		<!-- JSTL Dependency -->
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>${tld.version}</version>
+		</dependency>
+
+		<!-- Servlet Dependency -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlets.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- JSP Dependency -->
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>${jsp.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- HSQL Dependency -->
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>2.4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-extras</artifactId>
+			<version>3.0.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspectj.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.26</version>
+		</dependency>
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>2.3.5</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.5.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.5.1</version>
+			<scope>test</scope>
+		</dependency>
+
+
+	</dependencies>
+
 
 </project>

@@ -34,9 +34,16 @@ public class AccountsDAOImpl implements AccountsDAO{
 	 * @param account - the account to be saved.
 	 */
 	@Override
-	public void saveAccount(Accounts account) {
+	public void saveAccount(Accounts account, String name) {
 		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
+		
+		if(account.getUsername() == null) {
+			account.setUsername(name);
+		} else if (!account.getUsername().equals(name)) {
+			// TODO: implement exception
+		}
+		
 		currentSession.saveOrUpdate(account);
 	}
 
@@ -45,11 +52,10 @@ public class AccountsDAOImpl implements AccountsDAO{
 	 * @return
 	 */
 	@Override
-	public List<Accounts> getAccounts() {
+	public List<Accounts> getAccounts(String user) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		
-		Query theQuery =  currentSession.createQuery("from accounts order by organisation", Accounts.class);
-		
+		Query<Accounts> theQuery =  currentSession.createQuery("from accounts where user=:var order by organisation", Accounts.class);
+		theQuery.setParameter("var", user);
 		return theQuery.getResultList();
 	}
 
@@ -58,11 +64,18 @@ public class AccountsDAOImpl implements AccountsDAO{
 	 * @param accountId - the id of the account to be deleted.
 	 */
 	@Override
-	public void deleteAccount(int accountId) {
+	public void deleteAccount(int accountId, String user) {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		Accounts temp = currentSession.get(Accounts.class, accountId);
-		currentSession.delete(temp);
+		
+		if(temp.getUsername().equals(user)) {
+			currentSession.delete(temp);
+		}else {
+			// TODO: implement exception
+		}
+		
+		
 	}
 
 	/**
@@ -70,12 +83,25 @@ public class AccountsDAOImpl implements AccountsDAO{
 	 * @param accountId - the id of the account to be returned.
 	 */
 	@Override
-	public Accounts getAccount(int accountId) {
+	public Accounts getAccount(int accountId, String name) {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Accounts temp = currentSession.get(Accounts.class, accountId);
-		return temp;
+		Query<Accounts> theQuery = currentSession.createQuery("FROM accounts WHERE id=:accountId AND user=:name", Accounts.class);
+		
+		theQuery.setParameter("accountId", accountId);
+		theQuery.setParameter("name", name);
+		
+		List<Accounts> accList = theQuery.getResultList();
+		
+		if(accList.size() != 1) {
+			//TODO: Add exception here!
+		}
+		
+		return accList.get(0);
+		
+		//Accounts temp = currentSession.get(Accounts.class, accountId);
+		//return temp;
 	}
 
 }

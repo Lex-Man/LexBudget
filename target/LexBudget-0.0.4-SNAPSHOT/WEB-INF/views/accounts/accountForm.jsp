@@ -4,6 +4,7 @@
 <h1>Add Account</h1>
 <form:form action="saveAccount" modelAttribute="account" method="POST">
 	<form:hidden path="id" />
+	<form:hidden path="username" />
 	<table>
 		<tr>
 			<td><label></label>Organisation</td>

@@ -50,7 +50,7 @@ public class TestController {
 	@GetMapping("/accountTest")
 	@Transactional
 	public String AccountTest() {
-		Accounts temp = DAO.getAccount(9);
+		Accounts temp = DAO.getAccount(9, "Lex");
 		List<Transactions> aList = temp.getTransactions();
 		System.out.println("Account name: " + temp.getOrganisation() + "\n\n\n");
 		

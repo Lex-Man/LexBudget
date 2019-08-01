@@ -19,7 +19,7 @@ public interface TransactionService {
 	 * database.
 	 * @param transaction
 	 */
-	public void saveTransaction(Transactions transaction);
+	public void saveTransaction(Transactions transaction, String name);
 	
 	/**
 	 * Allows any business logic to take place before reading information from the transactions
@@ -27,19 +27,19 @@ public interface TransactionService {
 	 * @param accountId
 	 * @return
 	 */
-	public List<Transactions> getTransactions(int accountId);
+	public List<Transactions> getTransactions(int accountId, String user);
 	
 	/**
 	 * Deals with any business logic required before deleting a transaction.
 	 * 
 	 * @param transactionId
 	 */
-	public void deleteTransaction(int transactionId, int accountId);
+	public void deleteTransaction(int transactionId, int accountId, String name);
 
 	/**
 	 * Deals with any business logic required before returning a transaction 
 	 */
-	public Transactions getTransaction(int transId);
+	public Transactions getTransaction(int transId, String user);
 	
 	
 }

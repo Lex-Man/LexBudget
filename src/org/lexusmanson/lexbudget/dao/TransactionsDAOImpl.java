@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.lexusmanson.lexbudget.entity.Accounts;
 import org.lexusmanson.lexbudget.entity.Transactions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,15 +27,25 @@ public class TransactionsDAOImpl implements TransactionsDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Autowired
+	AccountsDAO accountsDAO;
+	
 	/**
 	 * Save a transaction in the database.
 	 */
 	@Override
-	public void saveTransaction(Transactions transaction) {
+	public void saveTransaction(Transactions transaction, String user) {
 		
-		Session currentSession = sessionFactory.getCurrentSession();
-		
-		currentSession.saveOrUpdate(transaction);
+		Accounts account = accountsDAO.getAccount(transaction.getAccountsId().getId(), user);
+		if (account == null){
+			// TODO: add exception handerling
+		}
+		else if(account.getUsername().equals(user)) {
+			Session currentSession = sessionFactory.getCurrentSession();
+			currentSession.saveOrUpdate(transaction);
+		} else {
+			// TODO: add exception handerling
+		}
 		
 	}
 
@@ -43,16 +54,27 @@ public class TransactionsDAOImpl implements TransactionsDAO{
 	 * account which is the primary key for the account account table.
 	 */
 	@Override
-	public List<Transactions> getTransactions(int account) {
+	public List<Transactions> getTransactions(int account, String user) {
 		
-		Session currentSession = sessionFactory.getCurrentSession();
+		Accounts tempAccount = accountsDAO.getAccount(account, user);
 		
-		Query<Transactions> theQuery =  currentSession.createQuery("from Transactions where accountsId.id=:var order by date", Transactions.class);
+		if(tempAccount == null) {
+			// TODO throw exception
+		} else if (tempAccount.getUsername().equals(user) ) {
+			Session currentSession = sessionFactory.getCurrentSession();
+			
+			Query<Transactions> theQuery =  currentSession.createQuery("from Transactions where accountsId.id=:var order by date", Transactions.class);
 
-		theQuery.setParameter("var", account);
-		List<Transactions> trans = theQuery.getResultList();
+			theQuery.setParameter("var", account);
+			List<Transactions> trans = theQuery.getResultList();
+			
+			return trans;
+		} else {
+			//TODO throw exception
+		}
 		
-		return trans;
+		return null;
+
 	}
 
 	/**
@@ -60,11 +82,22 @@ public class TransactionsDAOImpl implements TransactionsDAO{
 	 * the primary key of the transaction database. 
 	 */
 	@Override
-	public void deleteTransaction(int transactionId) {
-		Session currentSession = sessionFactory.getCurrentSession();
-		Query theQuery = currentSession.createQuery("delete from Transactions where id=:var");
-		theQuery.setParameter("var", transactionId);
-		theQuery.executeUpdate();
+	public void deleteTransaction(int transactionId, String user) {
+		
+		Transactions temp = this.getTransaction(transactionId, user);
+		Accounts tempAccount = temp.getAccountsId();
+		
+		if(tempAccount == null) {
+			// TODO: throw exception
+		} else if (tempAccount.getUsername().equals(user)) {
+			Session currentSession = sessionFactory.getCurrentSession();
+			Query<Transactions> theQuery = currentSession.createQuery("delete from Transactions where id=:var");
+			theQuery.setParameter("var", transactionId);
+			theQuery.executeUpdate();
+		} else {
+			// TODO: throw exception
+		}
+		
 	}
 
 	/**
@@ -72,10 +105,21 @@ public class TransactionsDAOImpl implements TransactionsDAO{
 	 * key inside the transaction table.
 	 */
 	@Override
-	public Transactions getTransaction(int transId) {
+	public Transactions getTransaction(int transId, String user) {
+		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		return currentSession.get(Transactions.class, transId);
+		Transactions tempTransaction = currentSession.get(Transactions.class, transId);
+		
+		if(tempTransaction == null) {
+			// TODO throw exception
+		} else if (tempTransaction.getAccountsId().getUsername().equals(user)) {
+			return tempTransaction;
+		} else {
+			// TODO throw exception
+		}
+		
+		return null;
 	}
 
 }

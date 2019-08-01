@@ -1,31 +1,29 @@
 package org.lexusmanson.lexbudget.controller;
 
+import java.security.Principal;
 /**
  * The web-controller used to control with request about transactions.
  */
 import java.util.List;
 // 03000593156
 
-
 import org.lexusmanson.lexbudget.entity.Accounts;
 import org.lexusmanson.lexbudget.entity.Transactions;
 import org.lexusmanson.lexbudget.service.AccountsService;
 import org.lexusmanson.lexbudget.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.validation.Validator;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.validation.BindingResult;
 
 /**
  * 
@@ -65,10 +63,11 @@ public class TransactionsController {
 	 * @return - the name of the file that displays all of the transactions for the supplied account.
 	 */
 	@GetMapping("/showAccount")
-	public String showAccount(@RequestParam("accountId") int theId, Model theModel) {
+	public String showAccount(@RequestParam("accountId") int theId, Model theModel, Principal principal) {
 		
-		Accounts tempAccount = accountsService.getAccount(theId);
-		List<Transactions> transactions = transactionService.getTransactions(theId);
+		String user = principal.getName();
+		Accounts tempAccount = accountsService.getAccount(theId, user);
+		List<Transactions> transactions = transactionService.getTransactions(theId, user);
 		System.out.println(transactions.toString());
 		theModel.addAttribute("transaction", transactions);
 		theModel.addAttribute("account", tempAccount);
@@ -83,9 +82,10 @@ public class TransactionsController {
 	 * @return - The name of the file that contains the form to add a new transaction.
 	 */
 	@GetMapping("/showFormForAdd")
-	public String addTransaction(@RequestParam("accountId") int theId, Model theModel) {
+	public String addTransaction(@RequestParam("accountId") int theId, Model theModel, Principal principal) {
 		
-		Accounts account = accountsService.getAccount(theId);
+		String user = principal.getName();
+		Accounts account = accountsService.getAccount(theId, user);
 		Transactions transaction = new Transactions();
 		transaction.setAccountsId(account);
 		theModel.addAttribute("transaction", transaction);
@@ -99,12 +99,13 @@ public class TransactionsController {
 	 * @return - a HTTP redirect request that returns the user to the page displayig all the transactions.
 	 */
 	@RequestMapping(value = "/saveTransaction", method = RequestMethod.POST)
-	public String saveTransaction(@ModelAttribute("transaction") Transactions transaction, BindingResult bindingResult) {
+	public String saveTransaction(@ModelAttribute("transaction") Transactions transaction, BindingResult bindingResult, Principal principal) {
+		String name = principal.getName();
 		validator.validate(transaction, bindingResult);
 		if(bindingResult.hasErrors()) {
 			return "transactions/transactionsForm";
 		}
-		transactionService.saveTransaction(transaction);
+		transactionService.saveTransaction(transaction, name);
 		int account = transaction.getAccountsId().getId();
 		return "redirect:/transactions/showFormForAdd?accountId=" + account;
 	}
@@ -116,8 +117,9 @@ public class TransactionsController {
 	 * @return - a HTTP redirect request that displays all of the accounts transactions.
 	 */
 	@GetMapping("/delete")
-	public String deleteTransaction(@RequestParam("accountId") int accId, @RequestParam("transactionId") int transId) {
-		transactionService.deleteTransaction(transId, accId);
+	public String deleteTransaction(@RequestParam("accountId") int accId, @RequestParam("transactionId") int transId, Principal principal) {
+		String name = principal.getName();
+		transactionService.deleteTransaction(transId, accId, name);
 		return "redirect:/transactions/showAccount?accountId=" + accId;
 	}
 	
@@ -129,9 +131,9 @@ public class TransactionsController {
 	 * @return - the name of the file that contains the form used to update the transaction.
 	 */
 	@GetMapping("/showFormForUpdate")
-	public String updateForm(@RequestParam("transactionId") int transId, @RequestParam("accountId") int accId, Model theModel) {
-		
-		Transactions trans = transactionService.getTransaction(transId);
+	public String updateForm(@RequestParam("transactionId") int transId, @RequestParam("accountId") int accId, Model theModel, Principal principal) {
+		String user = principal.getName();
+		Transactions trans = transactionService.getTransaction(transId, user);
 		theModel.addAttribute("transaction", trans);
 		theModel.addAttribute("accId", accId);
 		return "transactions/transactionsForm";

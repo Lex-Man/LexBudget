@@ -5,24 +5,25 @@ package org.lexusmanson.lexbudget.controller;
  * 
  */
 
+import java.security.Principal;
 import java.util.List;
 
 import org.lexusmanson.lexbudget.entity.Accounts;
 import org.lexusmanson.lexbudget.service.AccountsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.validation.Validator;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.validation.BindingResult;
 
 
 @Controller
@@ -50,8 +51,11 @@ public class AccountsController {
 	 * @return String containing the name of the server page to be served to the user.
 	 */
 	@GetMapping("/main")
-	public String main(Model theModel) {
-		List<Accounts> theAccounts = accountsService.getAccounts();
+	public String main(Model theModel, Principal principal) {
+		
+		String name = principal.getName();
+		List<Accounts> theAccounts = accountsService.getAccounts(name);
+		
 		theModel.addAttribute("accounts", theAccounts);
 		
 		return "accounts/main";
@@ -79,11 +83,13 @@ public class AccountsController {
 	 * @return a HTTP redirect request that sends the user back to the main accounts page. 
 	 */
 	@RequestMapping(value = "/saveAccount", method = RequestMethod.POST)
-	public String saveAccount(@ModelAttribute("account") @Validated Accounts theAccount, BindingResult bindingResult) {
+	public String saveAccount(@ModelAttribute("account") @Validated Accounts theAccount, BindingResult bindingResult, Principal principal) {
+		String user = principal.getName();
+		
 		if(bindingResult.hasErrors()) {
 			return "accounts/accountForm";
 		}
-		accountsService.saveAccount(theAccount);
+		accountsService.saveAccount(theAccount, user);
 		return "redirect:/accounts/main";
 	}
 
@@ -93,9 +99,9 @@ public class AccountsController {
 	 * @return - a HTTP redirect request to the accounts page.
 	 */
 	@GetMapping("/delete")
-	public String deleteAccount(@RequestParam("accountId") int theID) {
-		
-		accountsService.DeleteAccount(theID);
+	public String deleteAccount(@RequestParam("accountId") int theID, Principal principal) {
+		String name = principal.getName();
+		accountsService.DeleteAccount(theID, name);
 		return "redirect:/accounts/main";
 	}
 	
@@ -106,9 +112,9 @@ public class AccountsController {
 	 * @return - The file name of the JSP to be used to display the form.
 	 */
 	@GetMapping("/showFormForUpdate")
-	public String showFormForUpdate(@RequestParam("accountId") int theID, Model theModel) {
-		
-		Accounts temp = accountsService.getAccount(theID);
+	public String showFormForUpdate(@RequestParam("accountId") int theID, Model theModel, Principal principal) {
+		String user = principal.getName();
+		Accounts temp = accountsService.getAccount(theID, user);
 		theModel.addAttribute("account", temp);
 		return "accounts/accountForm";
 	}

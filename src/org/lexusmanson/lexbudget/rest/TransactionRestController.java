@@ -1,5 +1,6 @@
 package org.lexusmanson.lexbudget.rest;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.lexusmanson.lexbudget.entity.Accounts;
@@ -33,15 +34,16 @@ public class TransactionRestController {
 	}
 	
 	@GetMapping("/{accountId}/transactions")
-	public List<Transactions> getTransactions(@PathVariable int accountId){
-		
-		return transactionService.getTransactions(accountId);
+	public List<Transactions> getTransactions(@PathVariable int accountId, Principal principal){
+		String user = principal.getName();
+		return transactionService.getTransactions(accountId, user);
 	}
 	
 	@GetMapping("/{accountId}/transactions/{transactionId}")
-	public Transactions getTransaction(@PathVariable int accountId, @PathVariable int transactionId) {
+	public Transactions getTransaction(@PathVariable int accountId, @PathVariable int transactionId, Principal principal) {
 		
-		Transactions theTransaction = transactionService.getTransaction(transactionId);
+		String user = principal.getName();
+		Transactions theTransaction = transactionService.getTransaction(transactionId, user);
 		
 		if(theTransaction == null) {
 			throw new TransactionNotFoundException("Transaction id not found - " + transactionId);
@@ -52,31 +54,31 @@ public class TransactionRestController {
 	}
 	
 	@PostMapping("/{accountId}/transactions")
-	public Transactions addTransaction(@RequestBody Transactions theTransaction, @PathVariable int accountId) {
-		
-		Accounts account = accountsService.getAccount(accountId);
+	public Transactions addTransaction(@RequestBody Transactions theTransaction, @PathVariable int accountId, Principal principal) {
+		String user = principal.getName();
+		Accounts account = accountsService.getAccount(accountId, user);
 		theTransaction.setAccountsId(account);
-		transactionService.saveTransaction(theTransaction);
+		transactionService.saveTransaction(theTransaction, user);
 		
 		return theTransaction;
 	}
 	
 	@PutMapping("/{accountId}/transactions")
-	public Transactions updateTransactions(@RequestBody Transactions transaction, @PathVariable int accountId) {
-		
-		Accounts account = accountsService.getAccount(accountId);
+	public Transactions updateTransactions(@RequestBody Transactions transaction, @PathVariable int accountId, Principal principal) {
+		String user = principal.getName();
+		Accounts account = accountsService.getAccount(accountId, user);
 		transaction.setAccountsId(account);
-		transactionService.saveTransaction(transaction);
+		transactionService.saveTransaction(transaction, user);
 		
 		return transaction;
 	}
 	
 	@DeleteMapping("/{accountId}/transactions/{transactionId}")
-	public String deleteTransactions(@PathVariable int accountId, @PathVariable int transactionId) {
+	public String deleteTransactions(@PathVariable int accountId, @PathVariable int transactionId, Principal principal) {
+		String user = principal.getName();
+		transactionService.getTransaction(transactionId, user);
 		
-		transactionService.getTransaction(transactionId);
-		
-		transactionService.deleteTransaction(accountId, transactionId);
+		transactionService.deleteTransaction(accountId, transactionId, user);
 		
 		return "Deleted transaction id - " + transactionId;
 		

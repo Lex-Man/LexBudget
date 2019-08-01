@@ -1,5 +1,6 @@
 package org.lexusmanson.lexbudget.rest;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.lexusmanson.lexbudget.entity.Accounts;
@@ -28,16 +29,19 @@ public class AccountRestController {
 	}
 	
 	@GetMapping("/accounts")
-	public List<Accounts> getAccounts(){
+	public List<Accounts> getAccounts(Principal principal){
 		
-		return accountsService.getAccounts();
+		String user = principal.getName();
+		
+		return accountsService.getAccounts(user);
 		
 	}
 	
 	@GetMapping("/accounts/{accountId}")
-	public Accounts getAccount(@PathVariable int accountId) {
+	public Accounts getAccount(@PathVariable int accountId, Principal principal) {
 		
-		Accounts theAccount = accountsService.getAccount(accountId);
+		String user = principal.getName();
+		Accounts theAccount = accountsService.getAccount(accountId, user);
 		
 		if(theAccount == null) {
 			throw new AccountNotFoundException("Account id not found - " + accountId);
@@ -47,32 +51,35 @@ public class AccountRestController {
 	}
 	
 	@PostMapping("/accounts")
-	public Accounts addAccount(@RequestBody Accounts theAccount) {
+	public Accounts addAccount(@RequestBody Accounts theAccount, Principal principal) {
 		
 		theAccount.setId(0);
-		accountsService.saveAccount(theAccount);
+		String user = principal.getName();
+		accountsService.saveAccount(theAccount, user);
 		return theAccount;
 	}
 	
 	@PutMapping("/accounts")
-	public Accounts updateAccount(@RequestBody Accounts theAccount) {
+	public Accounts updateAccount(@RequestBody Accounts theAccount, Principal principal) {
 		
-		accountsService.saveAccount(theAccount);
+		String user = principal.getName();
+		accountsService.saveAccount(theAccount, user);
 
 		return theAccount;
 		
 	}
 
 	@DeleteMapping("/accounts/{accountId}")
-	public String deleteCustomer(@PathVariable int accountId) {
+	public String deleteCustomer(@PathVariable int accountId, Principal principal) {
 		
-		Accounts theAccount = accountsService.getAccount(accountId);
+		String user = principal.getName();
+		Accounts theAccount = accountsService.getAccount(accountId, user);
 		
 		if(theAccount == null) {
 			throw new AccountNotFoundException("Account id not found - " + accountId);
 		}
 		
-		accountsService.DeleteAccount(accountId);
+		accountsService.DeleteAccount(accountId, user);
 		
 		return "Deleted customer id - " + accountId;
 	}
