@@ -10,6 +10,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.lexusmanson.lexbudget.controller.exception.NameMismatchException;
+import org.lexusmanson.lexbudget.dao.exception.AccountReturnException;
 import org.lexusmanson.lexbudget.entity.Accounts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,10 +40,11 @@ public class AccountsDAOImpl implements AccountsDAO{
 		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		if(account.getUsername() == null) {
+		if(account.getUsername() == null || account.getUsername() == "") {
 			account.setUsername(name);
 		} else if (!account.getUsername().equals(name)) {
-			// TODO: implement exception
+			throw new NameMismatchException("Account username: " + account.getUsername() + 
+					" does not match session username: " + name);
 		}
 		
 		currentSession.saveOrUpdate(account);
@@ -72,7 +75,8 @@ public class AccountsDAOImpl implements AccountsDAO{
 		if(temp.getUsername().equals(user)) {
 			currentSession.delete(temp);
 		}else {
-			// TODO: implement exception
+			throw new NameMismatchException("Account username: " + temp.getUsername() + 
+					" does not match session username: " + user);
 		}
 		
 		
@@ -95,7 +99,7 @@ public class AccountsDAOImpl implements AccountsDAO{
 		List<Accounts> accList = theQuery.getResultList();
 		
 		if(accList.size() != 1) {
-			//TODO: Add exception here!
+			throw new AccountReturnException("The result either returned too many accounts or no accounts");
 		}
 		
 		return accList.get(0);

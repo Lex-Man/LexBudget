@@ -11,6 +11,7 @@
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/validator/AccountsValidator.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/error/TransactionRestExceptionHandler.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/dao/AccountsDAO.java
+/home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/controller/exception/AccountsExceptionHandler.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/error/TransactionNotFoundException.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/controller/LoginController.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/DTO/UserDTO.java
@@ -21,6 +22,7 @@
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/validator/TransactionValidator.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/service/AccountsService.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/error/AccountNotFoundException.java
+/home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/controller/exception/AccountsErrorResponse.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/service/TransactionService.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/AccountRestController.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/aspect/TransactionValidationAspect.java
@@ -30,6 +32,7 @@
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/controller/AccountsController.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/entity/Authorities.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/controller/TransactionsController.java
+/home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/controller/exception/NameMismatchException.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/service/AccountsServiceImpl.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/dao/AccountsDAOImpl.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/entity/Accounts.java

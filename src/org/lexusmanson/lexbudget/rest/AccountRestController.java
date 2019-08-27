@@ -23,10 +23,10 @@ public class AccountRestController {
 	@Autowired
 	private AccountsService accountsService;
 	
-	@GetMapping("/helloWorld")
-	public String helloWorld() {
-		return "Hello World";
-	}
+//	@GetMapping("/helloWorld")
+//	public String helloWorld() {
+//		return "Hello World";
+//	}
 	
 	@GetMapping("/accounts")
 	public List<Accounts> getAccounts(Principal principal){

@@ -10,10 +10,13 @@ org/lexusmanson/lexbudget/rest/error/AccountRestExceptionHandler.class
 org/lexusmanson/lexbudget/controller/TransactionsController.class
 org/lexusmanson/lexbudget/dao/TransactionsDAO.class
 org/lexusmanson/lexbudget/rest/error/TransactionNotFoundException.class
+org/lexusmanson/lexbudget/controller/exception/NameMismatchException.class
 org/lexusmanson/lexbudget/test/stringReplacementTest.class
 org/lexusmanson/lexbudget/dao/AccountsDAO.class
 org/lexusmanson/lexbudget/rest/error/GenericRestExceptionHandler.class
 org/lexusmanson/lexbudget/controller/AccountsController.class
+org/lexusmanson/lexbudget/controller/exception/AccountsExceptionHandler.class
+org/lexusmanson/lexbudget/controller/exception/AccountsErrorResponse.class
 org/lexusmanson/lexbudget/rest/AccountRestController.class
 org/lexusmanson/lexbudget/rest/error/AccountNotFoundException.class
 org/lexusmanson/lexbudget/entity/Transactions.class

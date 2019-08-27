@@ -28,10 +28,10 @@ public class TransactionRestController {
 	@Autowired
 	private AccountsService accountsService;
 	
-	@GetMapping("/helloWorld")
-	public String hellowWorld() {
-		return "Hello World";
-	}
+//	@GetMapping("/helloWorld")
+//	public String hellowWorld() {
+//		return "Hello World";
+//	}
 	
 	@GetMapping("/{accountId}/transactions")
 	public List<Transactions> getTransactions(@PathVariable int accountId, Principal principal){
@@ -76,7 +76,7 @@ public class TransactionRestController {
 	@DeleteMapping("/{accountId}/transactions/{transactionId}")
 	public String deleteTransactions(@PathVariable int accountId, @PathVariable int transactionId, Principal principal) {
 		String user = principal.getName();
-		transactionService.getTransaction(transactionId, user);
+		//transactionService.getTransaction(transactionId, user);
 		
 		transactionService.deleteTransaction(accountId, transactionId, user);
 		

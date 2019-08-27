@@ -65,6 +65,8 @@ public class AccountsServiceImpl implements AccountsService, TransactionService{
 
 	/**
 	 * Passes the id of the account to the accountDAO's DeleteAccount method. 
+	 * 
+	 * TODO: Decapitalise the name of this method.
 	 */
 	@Override
 	@Transactional

@@ -68,7 +68,7 @@ public class TransactionsController {
 		String user = principal.getName();
 		Accounts tempAccount = accountsService.getAccount(theId, user);
 		List<Transactions> transactions = transactionService.getTransactions(theId, user);
-		System.out.println(transactions.toString());
+		//System.out.println(transactions.toString());
 		theModel.addAttribute("transaction", transactions);
 		theModel.addAttribute("account", tempAccount);
 		return "transactions/main";

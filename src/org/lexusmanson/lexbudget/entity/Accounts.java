@@ -90,10 +90,12 @@ public class Accounts {
 	
 	/**
 	 * Creates a Accounts instance with the specified organisation, function, currentBalance and transaction valibles set.
+	 * @param transactions 
 	 */
-	public Accounts(String organisation, String function, double currentBalance, ArrayList<Transactions> transaction) {
+	public Accounts(String organisation,String username, String function, double currentBalance, List<Transactions> transactions) {
 		
 		this.organisation = organisation;
+		this.username = username;
 		this.function = function;
 		this.currentBalance = currentBalance;
 		this.transactions = transactions;
