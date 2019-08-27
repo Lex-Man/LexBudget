@@ -1,2 +1,9 @@
 org/lexusmanson/lexbudget/dao/test/AccountsDAOImplTest.class
+org/lexusmanson/lexbudget/rest/test/AccountRestControllerTest.class
+org/lexusmanson/lexbudget/service/test/LoginServiceImplTest.class
+org/lexusmanson/lexbudget/service/test/AccountsServiceImplTest.class
+org/lexusmanson/lexbudget/dao/test/LoginDAOImplTest.class
+org/lexusmanson/lexbudget/controller/test/TransactionsControllerTest.class
+org/lexusmanson/lexbudget/rest/test/TransactionRestControllerTest.class
+org/lexusmanson/lexbudget/controller/test/LoginControllerTest.class
 org/lexusmanson/lexbudget/controller/test/AccountsControllerTest.class

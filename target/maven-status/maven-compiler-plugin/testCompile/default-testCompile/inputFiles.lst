@@ -1,2 +1,9 @@
+/home/lex-man/eclipse-workspace/LexBudget/test/org/lexusmanson/lexbudget/rest/test/TransactionRestControllerTest.java
+/home/lex-man/eclipse-workspace/LexBudget/test/org/lexusmanson/lexbudget/rest/test/AccountRestControllerTest.java
+/home/lex-man/eclipse-workspace/LexBudget/test/org/lexusmanson/lexbudget/controller/test/TransactionsControllerTest.java
+/home/lex-man/eclipse-workspace/LexBudget/test/org/lexusmanson/lexbudget/service/test/LoginServiceImplTest.java
+/home/lex-man/eclipse-workspace/LexBudget/test/org/lexusmanson/lexbudget/dao/test/LoginDAOImplTest.java
+/home/lex-man/eclipse-workspace/LexBudget/test/org/lexusmanson/lexbudget/controller/test/LoginControllerTest.java
+/home/lex-man/eclipse-workspace/LexBudget/test/org/lexusmanson/lexbudget/service/test/AccountsServiceImplTest.java
 /home/lex-man/eclipse-workspace/LexBudget/test/org/lexusmanson/lexbudget/dao/test/AccountsDAOImplTest.java
 /home/lex-man/eclipse-workspace/LexBudget/test/org/lexusmanson/lexbudget/controller/test/AccountsControllerTest.java
