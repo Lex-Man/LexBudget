@@ -18,6 +18,7 @@ org/lexusmanson/lexbudget/controller/AccountsController.class
 org/lexusmanson/lexbudget/controller/exception/AccountsExceptionHandler.class
 org/lexusmanson/lexbudget/controller/exception/AccountsErrorResponse.class
 org/lexusmanson/lexbudget/rest/AccountRestController.class
+org/lexusmanson/lexbudget/aspect/log/ControllerLogger.class
 org/lexusmanson/lexbudget/rest/error/AccountNotFoundException.class
 org/lexusmanson/lexbudget/entity/Transactions.class
 org/lexusmanson/lexbudget/dao/TransactionsDAOImpl.class

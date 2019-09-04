@@ -19,6 +19,7 @@
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/test/stringReplacementTest.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/config/LexBudgetConfig.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/entity/User.java
+/home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/aspect/log/ControllerLogger.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/validator/TransactionValidator.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/service/AccountsService.java
 /home/lex-man/eclipse-workspace/LexBudget/src/org/lexusmanson/lexbudget/rest/error/AccountNotFoundException.java
