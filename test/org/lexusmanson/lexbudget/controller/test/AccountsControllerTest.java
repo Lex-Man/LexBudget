@@ -71,7 +71,7 @@ public class AccountsControllerTest {
 	@Test
 	void addAccountTest() {
 		
-		String result = testClass.addAccount(mockModel);
+		String result = testClass.addAccount(mockModel,mockPrincipal);
 		assertEquals("accounts/accountForm", result);
 		
 	}
