@@ -50,7 +50,7 @@
 		<jsp.version>2.3.3</jsp.version>
 		<hsqldb.version>1.8.0.10</hsqldb.version>
 		<aspectj.version>1.9.4</aspectj.version>
-		<jackson.version>2.10.0.pr1</jackson.version>
+		<jackson.version>2.13.4.1</jackson.version>
 	</properties>
 
 	<dependencies>
